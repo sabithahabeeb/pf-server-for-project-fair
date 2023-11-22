@@ -42,6 +42,10 @@ exports.allUserProjects = async (req,res)=>{
 
 // getallprojects - token required
 exports.getallProjects = async (req,res)=>{
+    const searchKey = req.query.searc
+    const query = {
+        languages:{$regex:searchKey , $options:"i"}
+    }
     try{
         const allprojects = await projects.find()
         res.status(200).json(allprojects)
